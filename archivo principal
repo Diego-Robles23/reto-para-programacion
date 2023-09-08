@@ -25,7 +25,7 @@ void controlarobot(const std::string &accion, double distancia, double velocidad
 
 void quitar_llantas(){
 
-  controlarobot("avanza", distanciare, velocidadmotor, pesorobot, tiempotr);
+    controlarobot("avanza", distanciare, velocidadmotor, pesorobot, tiempotr);
     controlarobot("gira a la derecha", 0, 0.5, pesorobot, tiempotr);
     controlarobot("toma la llanta", 0, 0, pesorobot, tiempotr);
     controlarobot("gira a la derecha", 0, 0.5, pesorobot, tiempotr);
