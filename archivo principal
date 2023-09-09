@@ -43,7 +43,7 @@ void quitar_llantas(){
     controlarobot("deja la llanta", 0, 0, pesorobot, tiempotr);
 
     int tiemporest = tiempotot - tiempotr;
-    std::cout << "tiempo utilizado:" << tiempotr << " segundos" << std::endl;
+    std::cout << "tiempo utilizado: " << tiempotr << " segundos" << std::endl;
     if (tiemporest > 0) {
         std::cout << "tiempo restante: " << tiemporest << " segundos." << std::endl;
     } else {
@@ -90,7 +90,7 @@ void limpiar_herramientas(){
     int tiemporest = tiempotot - tiempotr;
     std::cout << "tiempo utilizado: " << tiempotr << " segundos" << std::endl;
     if (tiemporest > 0) {
-        std::cout << "tiempo restante: " << tiemporest << " segundos." << std::endl;
+        std::cout << "tiempo restante: " << tiemporest << " segundos" << std::endl;
     } else {
         std::cout << "el robot uso todo el tiempo" << std::endl;
     }
@@ -122,8 +122,9 @@ int main(){
   std::cout<<"\nIngrese una opcion valida. "<<std::endl;
   }} while (opcion != '1' && opcion != '2' && opcion != '3');
 
-  std::cout<<"\n\n--- Ingresando al teleoperado... ---"<<std::endl;
+  std::cout<<"\n\n--- Ingresando al teleoperado... ---\n\n"<<std::endl;
   while (tiempo_acumulado < 165) { 
+      
         std::cout << "Elija un botón: a, b, c, d: " << std::endl;
         std::cout << "Boton a) Avanzar / Retroceder" << std::endl;
         std::cout << "Boton b) Girar Izquierda / Derecha" << std::endl;
@@ -135,52 +136,52 @@ int main(){
             std::string accion;
             int tiempo;
 
-            std::cout << "¿El robot avanza o retrocede? ";
+            std::cout << "\n¿El robot avanza o retrocede? \n";
             std::cin >> accion;
 
-            std::cout << "¿Por cuánto tiempo (en segundos)? ";
+            std::cout << "¿Por cuánto tiempo (en segundos)? \n";
             std::cin >> tiempo;
 
-            std::cout << "El robot " << accion << " durante " << tiempo << " segundos." << std::endl;
+            std::cout << "El robot " << accion << " durante " << tiempo << " segundos \n" << std::endl;
 
             tiempo_acumulado += tiempo;
         } else if (opcion == 'b') {
             std::string accion;
             int tiempo;
 
-            std::cout << "¿¿El robot gira a la izquierda o a la derecha? ";
+            std::cout << "\n¿El robot gira a la izquierda o a la derecha? \n";
             std::cin >> accion;
 
-            std::cout << "¿Por cuánto tiempo (en segundos)? ";
+            std::cout << "¿Por cuánto tiempo (en segundos)? \n";
             std::cin >> tiempo;
 
-            std::cout << "El robot giró " << accion << " durante " << tiempo << " segundos." << std::endl;
+            std::cout << "El robot giró " << accion << " durante " << tiempo << " segundos \n" << std::endl;
 
             tiempo_acumulado += tiempo;
         } else if (opcion == 'c') {
             std::string accion;
             int tiempo;
 
-            std::cout << "¿Desea bajar o subir la polea? ";
+            std::cout << "\n¿Desea bajar o subir la polea? \n";
             std::cin >> accion;
 
-            std::cout << "¿Por cuánto tiempo (en segundos)? ";
+            std::cout << "¿Por cuánto tiempo (en segundos)? \n";
             std::cin >> tiempo;
 
-            std::cout << "El robot " << accion << " la polea durante " << tiempo << " segundos." << std::endl;
+            std::cout << "El robot " << accion << " la polea durante " << tiempo << " segundos \n" << std::endl;
 
             tiempo_acumulado += tiempo;
         } else if (opcion == 'd') {
             std::string accion;
             int tiempo;
 
-            std::cout << "¿Desea abrir o cerrar los brazos? ";
+            std::cout << "\n¿Desea abrir o cerrar los brazos? \n";
             std::cin >> accion;
 
-            std::cout << "¿Por cuánto tiempo (en segundos)? ";
+            std::cout << "¿Por cuánto tiempo (en segundos)? \n";
             std::cin >> tiempo;
 
-            std::cout << "El robot " << accion << " la garra durante " << tiempo << " segundos." << std::endl;
+            std::cout << "El robot " << accion << " la garra durante " << tiempo << " segundos \n" << std::endl;
 
             tiempo_acumulado += tiempo;
         } else {
