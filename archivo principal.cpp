@@ -5,6 +5,7 @@
 #include <string>
 #include <locale.h>
 
+//Todas las variables y constantes//
  double pesorobot = 50.0;
     const int tiempotot = 15;
     int tiempotr = 0;
@@ -13,9 +14,13 @@
     char opcion;
     int tiempo_acumulado = 0;
 
+//formula para calcular el tiempo en base a la distancia, peso y motor del robot//
+
 double calculotiempo(double distancia, double velocidad, double peso){
     return std::abs(distancia)/(std::abs(velocidad)*(peso/50.0));
 }
+
+//Funcion que define el tiempo de cada movimiento//
 
 void controlarobot(const std::string &accion, double distancia, double velocidad, double peso, int &tiempotr){
     double tiempo = calculotiempo(distancia, velocidad, peso);
@@ -32,6 +37,8 @@ void controlarobot(const std::string &accion, double distancia, double velocidad
     tiempotr += static_cast<int>(tiempo);
     std::this_thread::sleep_for(std::chrono::seconds(static_cast<int>(1)));
 }
+
+//Las 3 funciones que realiza el autonomo//
 
 void quitar_llantas(){
 
@@ -122,14 +129,23 @@ int main(){
   std::cout<<"\nIngrese una opcion valida. "<<std::endl;
   }} while (opcion != '1' && opcion != '2' && opcion != '3');
 
+  
+
   std::cout<<"\n\n--- Ingresando al teleoperado... ---\n\n"<<std::endl;
   while (tiempo_acumulado < 165) { 
       
         std::cout << "Elija un botón: a, b, c, d: " << std::endl;
         std::cout << "Boton a) Avanzar / Retroceder" << std::endl;
+        //boton a) Controlador Spark max conectado al puerto 16//
+
         std::cout << "Boton b) Girar Izquierda / Derecha" << std::endl;
+        //boton b) Controlador Spark max conectado al puerto 17//
+
         std::cout << "Boton c) Bajar / Subir la polea" << std::endl;
+        //boton c) Controlador Spark max conectado al puerto 10//
+
         std::cout << "Boton d) Abrir / Cerrar los brazos" << std::endl;
+        //boton d) Controlador Spark max conectado al puerto 11//
         std::cin >> opcion;
 
         if (opcion == 'a') {
