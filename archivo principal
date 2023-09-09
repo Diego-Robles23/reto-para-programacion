@@ -19,18 +19,18 @@ double calculotiempo(double distancia, double velocidad, double peso){
 
 void controlarobot(const std::string &accion, double distancia, double velocidad, double peso, int &tiempotr){
     double tiempo = calculotiempo(distancia, velocidad, peso);
-    if (accion == "gira a la derecha" || accion== "gira a la izquierda" || accion== "dejar herramienta" ){
+    if (accion == "gira a la derecha" || accion== "gira a la izquierda" || accion== "deja herramientas" ){
         tiempo = 1.5;
     }
     else if (accion == "toma la llanta" || accion == "deja la llanta" || accion == "coloca la llanta" ){
         tiempo = 4.0;
     }
-    else if (accion == "toma la herramienta"){
-        tiempo = 2;
+    else if (accion == "toma 3 herramientas"){
+        tiempo = 7;
     }
     std::cout << "El robot " << accion << " durante " << tiempo << " segundos" << std::endl;
     tiempotr += static_cast<int>(tiempo);
-    std::this_thread::sleep_for(std::chrono::seconds(static_cast<int>(tiempo)));
+    std::this_thread::sleep_for(std::chrono::seconds(static_cast<int>(1)));
 }
 
 void quitar_llantas(){
@@ -43,7 +43,7 @@ void quitar_llantas(){
     controlarobot("deja la llanta", 0, 0, pesorobot, tiempotr);
 
     int tiemporest = tiempotot - tiempotr;
-    std::cout << "tiempo utilizado:" << tiempotr << " segundos" << std::endl;
+    std::cout << "\ntiempo utilizado: " << tiempotr << " segundos" << std::endl;
     if (tiemporest > 0) {
         std::cout << "tiempo restante: " << tiemporest << " segundos." << std::endl;
     } else {
@@ -68,7 +68,7 @@ void poner_llantas(){
 
 
     int tiemporest = tiempotot - tiempotr;
-    std::cout << "tiempo utilizado:" << tiempotr << " segundos" << std::endl;
+    std::cout << "\ntiempo utilizado: " << tiempotr << " segundos" << std::endl;
     if (tiemporest > 0) {
         std::cout << "tiempo restante: " << tiemporest << " segundos." << std::endl;
     } else {
@@ -82,15 +82,15 @@ void limpiar_herramientas(){
   controlarobot("gira a la izquierda", 0, 0.5, pesorobot, tiempotr);
   controlarobot("avanza", distanciare, velocidadmotor, pesorobot, tiempotr);
   controlarobot("gira a la izquierda", 0, 0.5, pesorobot, tiempotr);
-  controlarobot("toma la herramienta", 0, 0, pesorobot, tiempotr);
+  controlarobot("toma 3 herramientas", 0, 0, pesorobot, tiempotr);
   controlarobot("gira a la izquierda", 0, 0.5, pesorobot, tiempotr);
   controlarobot("avanza de regreso", distanciare, velocidadmotor, pesorobot, tiempotr);
-  controlarobot("dejar herramienta", 0, 0.5, pesorobot, tiempotr);
+  controlarobot("deja herramientas", 0, 0.5, pesorobot, tiempotr);
 
     int tiemporest = tiempotot - tiempotr;
-    std::cout << "tiempo utilizado:" << tiempotr << " segundos" << std::endl;
+    std::cout << "\ntiempo utilizado: " << tiempotr << " segundos" << std::endl;
     if (tiemporest > 0) {
-        std::cout << "tiempo restante: " << tiemporest << " segundos." << std::endl;
+        std::cout << "tiempo restante: " << tiemporest << " segundos" << std::endl;
     } else {
         std::cout << "el robot uso todo el tiempo" << std::endl;
     }
@@ -122,9 +122,9 @@ int main(){
   std::cout<<"\nIngrese una opcion valida. "<<std::endl;
   }} while (opcion != '1' && opcion != '2' && opcion != '3');
 
-
-  std::cout<<"\n\nIngresando al teleoperado..."<<std::endl;
+  std::cout<<"\n\n--- Ingresando al teleoperado... ---\n\n"<<std::endl;
   while (tiempo_acumulado < 165) { 
+      
         std::cout << "Elija un botón: a, b, c, d: " << std::endl;
         std::cout << "Boton a) Avanzar / Retroceder" << std::endl;
         std::cout << "Boton b) Girar Izquierda / Derecha" << std::endl;
@@ -136,58 +136,61 @@ int main(){
             std::string accion;
             int tiempo;
 
-            std::cout << "¿El robot avanza o retrocede?";
+            std::cout << "\n¿El robot avanza o retrocede? \n";
             std::cin >> accion;
 
-            std::cout << "¿Por cuánto tiempo (en segundos)? ";
+            std::cout << "¿Por cuánto tiempo (en segundos)? \n";
             std::cin >> tiempo;
 
-            std::cout << "El robot " << accion << " durante " << tiempo << " segundos." << std::endl;
+            std::cout << "El robot " << accion << " durante " << tiempo << " segundos" << std::endl;
 
             tiempo_acumulado += tiempo;
         } else if (opcion == 'b') {
             std::string accion;
             int tiempo;
 
-            std::cout << "¿¿El robot gira a la izquierda o a la derecha? ";
+            std::cout << "\n¿El robot gira a la izquierda o a la derecha? \n";
             std::cin >> accion;
 
-            std::cout << "¿Por cuánto tiempo (en segundos)? ";
+            std::cout << "¿Por cuánto tiempo (en segundos)? \n";
             std::cin >> tiempo;
 
-            std::cout << "El robot giró " << accion << " durante " << tiempo << " segundos." << std::endl;
+            std::cout << "El robot giró a la " << accion << " durante " << tiempo << " segundos" << std::endl;
 
             tiempo_acumulado += tiempo;
         } else if (opcion == 'c') {
             std::string accion;
             int tiempo;
 
-            std::cout << "¿Desea bajar o subir la polea? ";
+            std::cout << "\n¿Desea bajar o subir la polea? \n";
             std::cin >> accion;
 
-            std::cout << "¿Por cuánto tiempo (en segundos)? ";
+            std::cout << "¿Por cuánto tiempo (en segundos)? \n";
             std::cin >> tiempo;
 
-            std::cout << "El robot " << accion << " la polea durante " << tiempo << " segundos." << std::endl;
+            std::cout << "El robot hizo " << accion << " la polea durante " << tiempo << " segundos" << std::endl;
 
             tiempo_acumulado += tiempo;
         } else if (opcion == 'd') {
             std::string accion;
             int tiempo;
 
-            std::cout << "¿Desea abrir o cerrar los brazos? ";
+            std::cout << "\n¿Desea abrir o cerrar los brazos? \n";
             std::cin >> accion;
 
-            std::cout << "¿Por cuánto tiempo (en segundos)? ";
+            std::cout << "¿Por cuánto tiempo (en segundos)? \n";
             std::cin >> tiempo;
 
-            std::cout << "El robot " << accion << " la garra durante " << tiempo << " segundos." << std::endl;
+            std::cout << "El robot hizo " << accion << " la garra durante " << tiempo << " segundos" << std::endl;
 
             tiempo_acumulado += tiempo;
         } else {
             std::cout << "El botón no existe. Por favor, elija de nuevo." << std::endl;
         }
 
+        int tiempo_restante = 165 - tiempo_acumulado;
+        std::cout << "Te sobran " << tiempo_restante << " segundos\n\n" << std::endl;
+    
         if (tiempo_acumulado >= 135 && tiempo_acumulado < 165) { 
             std::cout << "--- Quedan 30 segundos, recomendamos dirigirte a la zona de salida ---" << std::endl;
         }
@@ -196,5 +199,6 @@ int main(){
     if (tiempo_acumulado >= 165) { 
         std::cout << "Se acabó el tiempo." << std::endl;
     }
+    
   return 0; 
 }
