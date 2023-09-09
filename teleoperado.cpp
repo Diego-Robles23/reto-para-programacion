@@ -76,7 +76,7 @@ int main() {
     }
 
     if (tiempo_acumulado >= 165) { 
-        std::cout << "Se acabó el tiempo." << std::endl;
+        std::cout << "Se acabo el tiempo." << std::endl;
     }
 
     return 0;
